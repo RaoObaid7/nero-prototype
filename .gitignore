@@ -1,0 +1,12 @@
+/node_modules
+/.next/
+/out/
+/dist
+.env
+.env.local
+/public/media/*
+!/public/media/.gitkeep
+.DS_Store
+*.pem
+.vscode/
+.idea/
