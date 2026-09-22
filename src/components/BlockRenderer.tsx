@@ -1,4 +1,5 @@
 import React from "react";
+import { FAQItem } from "./FAQItem";
 
 interface BlockProps {
   block: any;
@@ -41,10 +42,11 @@ export function BlockRenderer({ block }: BlockProps) {
           <h2>{block.heading || "Frequently Asked Questions"}</h2>
           <div className="faq-grid">
             {block.items?.map((item: any, idx: number) => (
-              <details key={idx} className="faq-item">
-                <summary><strong>{item.question}</strong></summary>
-                <p>{item.answer}</p>
-              </details>
+              <FAQItem
+                key={idx}
+                question={item.question}
+                answer={item.answer}
+              />
             ))}
           </div>
         </section>

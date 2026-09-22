@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T00:05:00.000Z",
+  "title": "Design System: TUYBA Publishing Platform",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Dawn Sky Teal", "canonical": "#38bdf8", "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#0ea5e9", "#38bdf8", "#7dd3fc", "#bae6fd"] },
+      "bg-deep": { "role": "neutral", "displayName": "Midnight Slate", "canonical": "#0f172a", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and major feature titles" },
+      "body": { "displayName": "Body", "purpose": "Long-form editorial travel prose" }
+    },
+    "shadows": [
+      { "name": "card-hover", "value": "0 10px 25px -5px rgba(56, 189, 248, 0.1)", "purpose": "Soft elevated highlight on interactive cards" }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for micro-interactions" }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main focal call-to-action button for conversions and admin triggers.",
+      "html": "<button class=\"ds-btn-primary\">Explore Destinations</button>",
+      "css": ".ds-btn-primary { background: #38bdf8; color: #0f172a; padding: 12px 24px; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: #0284c7; color: #fff; transform: translateY(-1px); }"
+    },
+    {
+      "name": "Article Card",
+      "kind": "card",
+      "refersTo": "card-article",
+      "description": "Editorial destination teaser card with hover lift and glowing border.",
+      "html": "<div class=\"ds-card-article\"><h3>The Spiritual Path of Cordoba</h3><p>An inspiring weekend guide exploring centuries of Andalusian architecture, peaceful prayer spaces, and halal gastronomy.</p></div>",
+      "css": ".ds-card-article { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 24px; color: #f8fafc; transition: all 0.2s ease; cursor: pointer; } .ds-card-article:hover { border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.1); } .ds-card-article h3 { font-size: 1.25rem; margin-bottom: 8px; color: #f8fafc; font-weight: 600; } .ds-card-article p { font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Mindful Caravan",
+    "overview": "The TUYBA visual interface is an immersive, high-contrast digital sanctuary designed for contemplation, travel discovery, and long-form editorial immersion.",
+    "keyCharacteristics": [
+      "Atmospheric Depth: Deep slate surfaces with subtle ambient elevation and backdrop blur.",
+      "Typographic Poise: Fluid responsive headlines with restrained line length for long-form comfort.",
+      "Intentional Restraint: Vibrant sky-teal accents used strictly for high-value interactions.",
+      "Tactile Modularity: Clear block borders, interactive cards, and responsive disclosure accordions."
+    ],
+    "rules": [
+      { "name": "The Rarity Rule", "body": "Dawn Sky Teal is used on ≤ 10% of any visible viewport.", "section": "colors" },
+      { "name": "The Editorial Breathing Rule", "body": "Body paragraphs never exceed 68 characters per line.", "section": "typography" }
+    ],
+    "dos": [
+      "Do maintain a strict 68ch reading measure on long-form articles.",
+      "Do ensure all text maintains WCAG AA contrast (≥ 4.5:1 against slate backgrounds).",
+      "Do provide smooth transitions (0.2s ease) on interactive hover targets."
+    ],
+    "donts": [
+      "Don't flood pages with bright primary blue; reserve it for purposeful calls-to-action.",
+      "Don't use pure black (#000000) for surfaces; use Midnight Slate (#0f172a).",
+      "Don't allow unknown blocks to crash the page; render fallback placeholders."
+    ]
+  }
+}

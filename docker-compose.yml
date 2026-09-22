@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: nero_prototype_db
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nero_prototype_dev
+    volumes:
+      - nero_prototype_data:/var/lib/postgresql/data
+
+volumes:
+  nero_prototype_data:

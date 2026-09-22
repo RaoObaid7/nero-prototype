@@ -2,15 +2,31 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="header">
-      <div className="container header-inner">
-        <Link href="/" className="logo">
-          ⚡ NERO CMS <span>Prototype</span>
-        </Link>
-        <nav className="nav">
-          <Link href="/">Home</Link>
-          <Link href="/blog">Articles</Link>
-          <Link href="/admin" className="admin-link">CMS Admin ↗</Link>
+    <header className="site-header">
+      <div className="container header-container">
+        <div className="header-brand-group">
+          <Link href="/" className="brand-logo">
+            <span className="brand-primary">NERO</span>
+            <span className="brand-divider">/</span>
+            <span className="brand-sub">TUYBA</span>
+          </Link>
+          <span className="badge-status">
+            <span className="badge-dot" />
+            Prototype
+          </span>
+        </div>
+
+        <nav className="header-nav" aria-label="Main Navigation">
+          <Link href="/" className="nav-item">Overview</Link>
+          <Link href="/blog" className="nav-item">Articles</Link>
+          <Link
+            href="/admin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-action"
+          >
+            CMS Studio ↗
+          </Link>
         </nav>
       </div>
     </header>
