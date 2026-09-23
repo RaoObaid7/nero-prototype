@@ -1,5 +1,6 @@
 import React from "react";
 import { FAQItem } from "./FAQItem";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 interface BlockProps {
   block: any;
@@ -9,6 +10,13 @@ export function BlockRenderer({ block }: BlockProps) {
   if (!block || !block.blockType) return null;
 
   switch (block.blockType) {
+    case "richText":
+      return (
+        <div className="block-richtext" style={{ marginBottom: "2rem" }}>
+          {block.content && <RichText data={block.content} />}
+        </div>
+      );
+
     case "hero":
       return (
         <section className="block-hero">

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import configPromise from "@/payload.config";
 import { BlockRenderer } from "@/components/BlockRenderer";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -15,8 +16,8 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     collection: "articles",
     where: {
       slug: { equals: slug },
-      _status: { equals: "published" },
     },
+    draft: true,
     limit: 1,
   });
 
@@ -43,6 +44,12 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         <p style={{ fontSize: "1.2rem", color: "var(--text-muted)", marginBottom: "2rem" }}>
           {article.excerpt}
         </p>
+      )}
+
+      {article.body && (
+        <div className="article-body" style={{ marginBottom: "2rem" }}>
+          <RichText data={article.body} />
+        </div>
       )}
 
       {article.layout?.map((block: any, idx: number) => (
