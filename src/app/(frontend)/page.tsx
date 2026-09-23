@@ -98,29 +98,42 @@ export default async function HomePage() {
           </div>
         ) : (
           <div className="magazine-grid">
-            {articles.map((art: any) => (
-              <Link
-                key={art.id}
-                href={`/blog/${art.slug}`}
-                className="magazine-card"
-              >
-                <div className="magazine-card-meta">
-                  <span className="card-badge">Article</span>
-                  <time className="card-date">
-                    {new Date(art.createdAt).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </time>
-                </div>
-                <h3 className="magazine-card-title">{art.title}</h3>
-                <p className="magazine-card-excerpt">
-                  {art.excerpt || "Read full travel guide and dispatch..."}
-                </p>
-                <span className="card-read-action">Read Dispatch →</span>
-              </Link>
-            ))}
+            {articles.map((art: any) => {
+              const coverUrl = typeof art.coverImage === "object" && art.coverImage !== null ? art.coverImage.url : null;
+              return (
+                <Link
+                  key={art.id}
+                  href={`/blog/${art.slug}`}
+                  className="magazine-card"
+                  style={{ padding: coverUrl ? 0 : "1.75rem", overflow: "hidden" }}
+                >
+                  {coverUrl && (
+                    <div className="article-card-thumb-wrapper" style={{ height: "180px" }}>
+                      <img src={coverUrl} alt={art.title} className="article-card-thumb" />
+                    </div>
+                  )}
+                  <div style={{ padding: coverUrl ? "1.5rem" : 0, display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "space-between" }}>
+                    <div>
+                      <div className="magazine-card-meta">
+                        <span className="card-badge">Article</span>
+                        <time className="card-date">
+                          {new Date(art.createdAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </time>
+                      </div>
+                      <h3 className="magazine-card-title">{art.title}</h3>
+                      <p className="magazine-card-excerpt">
+                        {art.excerpt || "Read full travel guide and dispatch..."}
+                      </p>
+                    </div>
+                    <span className="card-read-action">Read Dispatch →</span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </section>

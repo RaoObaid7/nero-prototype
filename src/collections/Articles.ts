@@ -12,6 +12,18 @@ export const Articles: CollectionConfig = {
     useAsTitle: "title",
     defaultColumns: ["title", "slug", "_status", "publishAt", "updatedAt"],
     description: "Articles and blog posts.",
+    preview: (doc) => {
+      if (doc?.slug) {
+        return `/blog/${doc.slug}?preview=true`;
+      }
+      return null;
+    },
+    livePreview: {
+      url: ({ data }) => {
+        const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3001";
+        return `${serverURL}/blog/${data?.slug || ""}?preview=true`;
+      },
+    },
   },
   versions: {
     drafts: {

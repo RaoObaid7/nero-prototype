@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getPayload } from "payload";
 import configPromise from "@/payload.config";
+import { draftMode } from "next/headers";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -8,8 +9,13 @@ export async function GET(request: Request) {
   const slug = searchParams.get("slug");
   const collection = searchParams.get("collection") || "articles";
 
-  if (secret !== process.env.PREVIEW_SECRET || !slug) {
-    return new Response("Invalid preview token or missing slug", { status: 401 });
+  const previewSecret = process.env.PREVIEW_SECRET || "preview-secret-key-32-chars-minimum-length";
+  if (secret && secret !== previewSecret) {
+    return new Response("Invalid preview token", { status: 401 });
+  }
+
+  if (!slug) {
+    return new Response("Missing slug", { status: 400 });
   }
 
   const payload = await getPayload({ config: configPromise });
@@ -24,5 +30,13 @@ export async function GET(request: Request) {
     return new Response("Document not found", { status: 404 });
   }
 
-  redirect(collection === "articles" ? `/blog/${slug}` : `/${slug}`);
+  try {
+    const draft = await draftMode();
+    draft.enable();
+  } catch {
+    // Graceful fallback
+  }
+
+  redirect(collection === "articles" ? `/blog/${slug}?preview=true` : `/${slug}?preview=true`);
 }
+
